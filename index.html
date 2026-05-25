@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Հայ Ժամանց - Հայկական Ծանուցում</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Հայ Ժամանց</div>
+            <ul class="nav-links">
+                <li><a href="#" data-section="home">Տուն</a></li>
+                <li><a href="#" data-section="music">Երաժշտություն</a></li>
+                <li><a href="#" data-section="tests">Թեստեր</a></li>
+                <li><a href="#" data-section="intellectual">Ինտելեկտուալ</a></li>
+                <li><a href="admin.html" class="admin-btn">Ադմին</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Տուն Բաժին -->
+    <section id="home-section" class="section active">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Բարի գալուստ Հայ Ժամանց</h1>
+                <p>Հայկական ժամանցային կայք - երաժշտություն, թեստեր և ինտելեկտուալ խաղեր</p>
+                <div class="hero-buttons">
+                    <button data-section="music" class="btn btn-primary">Երաժշտություն</button>
+                    <button data-section="tests" class="btn btn-secondary">Թեստեր</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Երաժշտություն Բաժին -->
+    <section id="music-section" class="section">
+        <div class="container">
+            <h2>Հայկական Դասական Երաժշտություն</h2>
+            <div class="music-grid">
+                <div class="music-card">
+                    <div class="music-player">
+                        <div class="music-icon">♪</div>
+                    </div>
+                    <h3>Անշուշտ Բաթ</h3>
+                    <p>Դասական հայկական կոմպոզիցիա</p>
+                    <audio controls>
+                        <source src="music1.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="music-card">
+                    <div class="music-player">
+                        <div class="music-icon">♪</div>
+                    </div>
+                    <h3>Թալինի Թաղ</h3>
+                    <p>Հայրենական մեղեդի</p>
+                    <audio controls>
+                        <source src="music2.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="music-card">
+                    <div class="music-player">
+                        <div class="music-icon">♪</div>
+                    </div>
+                    <h3>Ծիծաղ Շար</h3>
+                    <p>Ավանդական հայ երաժշտություն</p>
+                    <audio controls>
+                        <source src="music3.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="music-card">
+                    <div class="music-player">
+                        <div class="music-icon">♪</div>
+                    </div>
+                    <h3>Դադար Լույս</h3>
+                    <p>Հայ կոմպոզիտորի ստեղծագործություն</p>
+                    <audio controls>
+                        <source src="music4.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Թեստեր Բաժին -->
+    <section id="tests-section" class="section">
+        <div class="container">
+            <h2>Հայկական Ժամանցային Թեստեր</h2>
+            <div class="tests-grid">
+                <div class="test-card">
+                    <h3>Հայ Մշակույթ Թեստ</h3>
+                    <p>Ստուգեք ձեր գիտելիքը հայ մշակույթի մասին</p>
+                    <p class="test-difficulty">Դժվարություն: Միջինակ</p>
+                    <button onclick="startTest('culture')" class="btn btn-primary">Սկսել</button>
+                </div>
+
+                <div class="test-card">
+                    <h3>Հայ Պատմություն Թեստ</h3>
+                    <p>Հայ պատմության մասին հետաքրքիր հարցեր</p>
+                    <p class="test-difficulty">Դժվարություն: Բարձր</p>
+                    <button onclick="startTest('history')" class="btn btn-primary">Սկսել</button>
+                </div>
+
+                <div class="test-card">
+                    <h3>Հայ Լեզու Թեստ</h3>
+                    <p>Հայ լեզվի կանոններ և բառապաշար</p>
+                    <p class="test-difficulty">Դժվարություն: Միջինակ</p>
+                    <button onclick="startTest('language')" class="btn btn-primary">Սկսել</button>
+                </div>
+
+                <div class="test-card">
+                    <h3>Հայ Ճանապարհորդություն Թեստ</h3>
+                    <p>Հայաստանի պատմական վայրերի մասին</p>
+                    <p class="test-difficulty">Դժվարություն: Հեշտ</p>
+                    <button onclick="startTest('travel')" class="btn btn-primary">Սկսել</button>
+                </div>
+            </div>
+
+            <!-- Թեստի պատուհան -->
+            <div id="test-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close" onclick="closeTest()">&times;</span>
+                    <h3 id="test-title">Թեստ</h3>
+                    <div id="test-questions"></div>
+                    <button onclick="submitTest()" class="btn btn-primary">Ներկայացնել</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ինտելեկտուալ Բաժին -->
+    <section id="intellectual-section" class="section">
+        <div class="container">
+            <h2>Ինտելեկտուալ Հարցաշար</h2>
+            <div class="intellectual-grid">
+                <div class="quiz-card">
+                    <h3>Տրամաբանական Հարցեր</h3>
+                    <p>Մաթեմատիկական և տրամաբանական հարցեր</p>
+                    <div class="quiz-difficulty">Դժվարություն: ★★★</div>
+                    <button onclick="startQuiz('logic')" class="btn btn-primary">Խաղալ</button>
+                </div>
+
+                <div class="quiz-card">
+                    <h3>Ընդհանուր Գիտելիքներ</h3>
+                    <p>Տարբեր ոլորտներում հարցեր</p>
+                    <div class="quiz-difficulty">Դժվարություն: ★★</div>
+                    <button onclick="startQuiz('general')" class="btn btn-primary">Խաղալ</button>
+                </div>
+
+                <div class="quiz-card">
+                    <h3>Գիտական Հարցեր</h3>
+                    <p>Ֆիզիկա, քիմիա և կենսաբանություն</p>
+                    <div class="quiz-difficulty">Դժվարություն: ★★★★</div>
+                    <button onclick="startQuiz('science')" class="btn btn-primary">Խաղալ</button>
+                </div>
+
+                <div class="quiz-card">
+                    <h3>Հայ Գրականություն</h3>
+                    <p>Հայ գրողներ և տեղեկատվություն</p>
+                    <div class="quiz-difficulty">Դժվարություն: ★★★</div>
+                    <button onclick="startQuiz('literature')" class="btn btn-primary">Խաղալ</button>
+                </div>
+            </div>
+
+            <!-- Վիկտորինայի պատուհան -->
+            <div id="quiz-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close" onclick="closeQuiz()">&times;</span>
+                    <h3 id="quiz-title">Վիկտորինա</h3>
+                    <div id="quiz-content"></div>
+                    <button onclick="submitQuiz()" class="btn btn-primary">Վերջ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Հայ Ժամանց - Բոլոր իրավունքները պահպանված են</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

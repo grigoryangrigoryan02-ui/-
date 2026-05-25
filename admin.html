@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ադմին Պանել - Հայ Ժամանց</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <!-- Մուտքի Էկրան -->
+    <div id="login-screen" class="login-container">
+        <div class="login-box">
+            <h1>Ադմին Պանել</h1>
+            <p>Մուտք գործեք Ադմինական Պանել</p>
+            <form onsubmit="checkPassword(event)">
+                <div class="form-group">
+                    <label for="password">Գաղտնաբառ:</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Մուտքագրեք գաղտնաբառ" 
+                        required
+                    >
+                </div>
+                <button type="submit" class="btn btn-primary">Մուտք</button>
+                <a href="index.html" class="btn btn-secondary" style="text-align: center; display: block;">Հետ Տուն</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Ադմինական Պանել -->
+    <div id="admin-panel" class="admin-panel hidden">
+        <nav class="admin-navbar">
+            <div class="admin-header">
+                <h1>Հայ Ժամանց - Ադմին Պանել</h1>
+                <button onclick="logout()" class="btn btn-secondary">Ելք</button>
+            </div>
+            <ul class="admin-menu">
+                <li><a href="#" onclick="showAdminSection('dashboard')" class="menu-item active">Ընդամենը</a></li>
+                <li><a href="#" onclick="showAdminSection('users')" class="menu-item">Օգտատերեր</a></li>
+                <li><a href="#" onclick="showAdminSection('music')" class="menu-item">Երաժշտություն</a></li>
+                <li><a href="#" onclick="showAdminSection('tests')" class="menu-item">Թեստեր</a></li>
+                <li><a href="#" onclick="showAdminSection('quizzes')" class="menu-item">Վիկտորինաներ</a></li>
+                <li><a href="#" onclick="showAdminSection('settings')" class="menu-item">Կարգավորումներ</a></li>
+            </ul>
+        </nav>
+
+        <div class="admin-content">
+            <!-- Dashboard -->
+            <section id="dashboard-section" class="admin-section active">
+                <h2>Ընդամենը</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Ընդամենը Օգտատերեր</h3>
+                        <p class="stat-number">1,243</p>
+                        <p class="stat-change">↑ 12% այս ամսում</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Ընդամենը Թեստեր</h3>
+                        <p class="stat-number">487</p>
+                        <p class="stat-change">↑ 23 նոր</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Ընդամենը Վիկտորինաներ</h3>
+                        <p class="stat-number">156</p>
+                        <p class="stat-change">↑ 8 նոր</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Ընդամենը Երաժշտություն</h3>
+                        <p class="stat-number">324</p>
+                        <p class="stat-change">↑ 15 նոր</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <div class="dashboard-item">
+                        <h3>Վերջին Գործողություններ</h3>
+                        <ul class="activity-list">
+                            <li>Օգտատեր "Արման" թեստ ավարտել</li>
+                            <li>Նոր երաժշտություն ավելացվել</li>
+                            <li>Վիկտորինա թարմացվել</li>
+                            <li>Օգտատեր "Լիլի" գրանցվել</li>
+                            <li>Կայքի բացման թիվը 5,234</li>
+                        </ul>
+                    </div>
+
+                    <div class="dashboard-item">
+                        <h3>Կայքի Վիճակ</h3>
+                        <div class="status-info">
+                            <p><strong>Ընդամենը Վայտինգ:</strong> 432 Մբ</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 65%"></div>
+                            </div>
+                            <p><strong>API Վիճակ:</strong> <span class="status-good">✓ Գործում է</span></p>
+                            <p><strong>Դատավաս Վիճակ:</strong> <span class="status-good">✓ Հաստատ</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Management -->
+            <section id="users-section" class="admin-section">
+                <h2>Օգտատերերի Կառավարում</h2>
+                <div class="section-header">
+                    <button onclick="addNewUser()" class="btn btn-primary">Նոր Օգտատեր</button>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Անուն</th>
+                            <th>Էլ. Հասցե</th>
+                            <th>Պետք</th>
+                            <th>Գործողություններ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Music Management -->
+            <section id="music-section" class="admin-section">
+                <h2>Երաժշտության Կառավարում</h2>
+                <div class="section-header">
+                    <button onclick="addNewMusic()" class="btn btn-primary">Նոր Երաժշտություն</button>
+                </div>
+                
+                <!-- Upload Music -->
+                <div class="upload-section" style="background: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0, 61, 122, 0.1);">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 1.5rem;">Երաժշտություն Ներբեռնել</h3>
+                    <div class="form-group">
+                        <label>Երաժշտության Վերնագիր:</label>
+                        <input type="text" id="music-title-upload" placeholder="Մուտքագրեք վերնագիր" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Կազմիչ:</label>
+                        <input type="text" id="music-composer-upload" placeholder="Մուտքագրեք կազմիչի անուն" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Աուդիո Ֆայլ (MP3):</label>
+                        <input type="file" id="music-file-upload" accept="audio/mpeg,.mp3" class="form-input" style="padding: 0.5rem;">
+                    </div>
+                    <button onclick="uploadMusic()" class="btn btn-primary">Ներբեռնել Երաժշտություն</button>
+                </div>
+
+                <div class="content-grid">
+                </div>
+            </section>
+
+            <!-- Tests Management -->
+            <section id="tests-section" class="admin-section">
+                <h2>Թեստերի Կառավարում</h2>
+                <div class="section-header">
+                    <button onclick="addNewTest()" class="btn btn-primary">Նոր Թեստ</button>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Թեստի Անուն</th>
+                            <th>Հարցերի թիվ</th>
+                            <th>Դժվարություն</th>
+                            <th>Ներկայացումներ</th>
+                            <th>Գործողություններ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Quizzes Management -->
+            <section id="quizzes-section" class="admin-section">
+                <h2>Վիկտորինաների Կառավարում</h2>
+                <div class="section-header">
+                    <button onclick="addNewQuiz()" class="btn btn-primary">Նոր Վիկտորինա</button>
+                </div>
+                <div class="content-grid">
+                </div>
+            </section>
+
+            <!-- Settings -->
+            <section id="settings-section" class="admin-section">
+                <h2>Կարգավորումներ</h2>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label>Կայքի Անուն:</label>
+                        <input type="text" value="Հայ Ժամանց" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Կայքի Նկարագրություն:</label>
+                        <textarea class="form-input" rows="4">Հայկական ժամանցային կայք - երաժշտություն, թեստեր և ինտելեկտուալ խաղեր</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Մեյլ Հասցե:</label>
+                        <input type="email" value="admin@hayzhaman.am" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Նոր Ադմինական Գաղտնաբառ:</label>
+                        <input type="password" placeholder="Թողել դատարկ, չփոխելու համար" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" checked>
+                            Թույլատրել նոր գրանցումներ
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" checked>
+                            Ցուցադրել վերջին գործունեությունները
+                        </label>
+                    </div>
+
+                    <button onclick="saveSettings()" class="btn btn-primary">Պահել</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
